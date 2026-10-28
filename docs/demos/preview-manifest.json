@@ -1,0 +1,105 @@
+{
+  "description": "Inline README previews made from the user-supplied synchronized terminal and RViz2 recordings. These are edited recorded evidence, not a new runtime validation.",
+  "originals_preserved": true,
+  "sources": {
+    "terminal.mp4": {
+      "bytes": 34771261,
+      "sha256": "051451c88067deb7845c951c7bcf11e5a8961dfed4c0cc5179be0d0b9783602b"
+    },
+    "video vector.mp4": {
+      "bytes": 509042258,
+      "sha256": "247a6611ee9b6e43349039ff495fe466ac226b92effd4b2c93dfaf7c3a3aa7c2"
+    }
+  },
+  "timeline": {
+    "segments_seconds": [
+      [
+        94,
+        102
+      ],
+      [
+        116,
+        128
+      ]
+    ],
+    "playback_speed": 1,
+    "edit": "A hard cut skips the interval between the two excerpts. Terminal and RViz2 retain matching source timestamps within each excerpt."
+  },
+  "terminal_crop_source_pixels": {
+    "x": 0,
+    "y": 850,
+    "width": 1000,
+    "height": 480
+  },
+  "combined_layout": {
+    "top_terminal": [
+      720,
+      346
+    ],
+    "bottom_rviz2": [
+      720,
+      540
+    ]
+  },
+  "encoding": {
+    "fps": 4,
+    "combined_palette_colors": 96,
+    "terminal_palette_colors": 16,
+    "dither": "bayer, scale 4"
+  },
+  "verification": "Decoded GIF frames inspected for readable terminal queries/replies and synchronized RViz2 target changes. Crops focus on the demonstrated interaction; startup banner and local paths are excluded.",
+  "assets": {
+    "query-and-result-preview.gif": {
+      "bytes": 1565359,
+      "sha256": "9a7bbf177b73e5e3513914064c0b502a122d380743c110397bb844e496b32b01",
+      "width": 720,
+      "height": 886,
+      "frames": 80,
+      "duration_seconds": 20.0,
+      "fps": 4,
+      "loop": true,
+      "source_windows_seconds": [
+        [
+          94,
+          102
+        ],
+        [
+          116,
+          128
+        ]
+      ],
+      "description": "Actual recorded terminal query and replies stacked above synchronized RViz2 results. Shows smartphone identification, phone tracking request and subsequent switch from person mask to phone mask."
+    },
+    "query-and-result-poster.png": {
+      "bytes": 242467,
+      "sha256": "2078a7756ee36f581d6a00b25fa5550f6996d19156e9bf09a9f4b9134d2c941e",
+      "description": "Final GIF frame showing the smartphone answer, phone tracking confirmation and (for combined layout) phone mask."
+    },
+    "terminal-preview.gif": {
+      "bytes": 70163,
+      "sha256": "1480662038f4efdb2c6474f36a6e19029c6e604fe572348ab2b574b4a8de2e27",
+      "width": 900,
+      "height": 432,
+      "frames": 80,
+      "duration_seconds": 20.0,
+      "fps": 4,
+      "loop": true,
+      "source_windows_seconds": [
+        [
+          94,
+          102
+        ],
+        [
+          116,
+          128
+        ]
+      ],
+      "description": "Larger terminal-only view of the same two actual-speed interaction excerpts."
+    },
+    "terminal-poster.png": {
+      "bytes": 66395,
+      "sha256": "ab4142b37ac20871f0021280181a3da260c6ab9976734cd2d7aa91430b2b6473",
+      "description": "Final GIF frame showing the smartphone answer, phone tracking confirmation and (for combined layout) phone mask."
+    }
+  }
+}

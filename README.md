@@ -8,21 +8,30 @@ A vision-language model interprets the request and selects a target and camera. 
 
 **Status:** working VLM and segmentation demos; the wider platform is under active development.
 
-[![Person, phone, headphones and glasses segmentation preview](docs/assets/tracking-preview.gif)](docs/demos/tracking-highlights.mp4)
+[![Actual terminal query and reply above the synchronized RViz2 segmentation result](docs/assets/query-and-result-preview.gif)](https://drive.google.com/file/d/17LIqK0gdGzUgEhZyIQOMYNO2C3uXj6Oz/view?usp=sharing)
 
-*Recorded on the Jazzy container setup. The preview combines four target examples; [watch the 80-second highlight](docs/demos/tracking-highlights.mp4) or [download the MP4](https://github.com/ADHU-ADHU/scenepilot-ros2/raw/refs/heads/main/docs/demos/tracking-highlights.mp4).*
+*Recorded on the Jazzy container setup. The terminal asks what is in the person's hand, receives the smartphone answer, and requests phone tracking. The synchronized RViz2 view shows the mask changing to the phone. Click the preview to watch the combined recording on Drive.*
+
+**Watch in your browser:** [Combined demo](https://drive.google.com/file/d/17LIqK0gdGzUgEhZyIQOMYNO2C3uXj6Oz/view?usp=sharing) · [Terminal commands and replies](https://drive.google.com/file/d/1EEfU19_h9T7A9u0hPMNp860B_fS1JWtJ/view?usp=sharing) · [RViz2 tracking](https://drive.google.com/file/d/1hTBy3ep91yk6JNRLcw2_SAukfDpb3UrY/view?usp=sharing)
 
 [Setup and demo commands](docs/SETUP.md) · [Architecture](docs/ARCHITECTURE.md) · [Validation and project status](docs/STATUS.md) · [Evaluation](docs/EVALUATION.md)
 
 ## Recorded demos
 
-| Demo | What it shows | Video |
-| --- | --- | --- |
-| RViz2: target tracking | Person → phone → headphones → glasses, with masks and bounding boxes | [80 s · MP4](docs/demos/tracking-highlights.mp4) |
-| Terminal: commands and replies | Smartphone question/answer and the phone-tracking confirmation | [68 s · MP4](docs/demos/terminal-interaction.mp4) |
-| Combined: visual question answering | Terminal interaction alongside the camera/segmentation view | [68 s · MP4](docs/demos/visual-question-answering.mp4) |
+| Demo | What it shows | Watch in browser | Download edited clip |
+| --- | --- | --- | --- |
+| Combined: query → result | Typed requests and VLM replies alongside the RViz2 output | [Watch on Drive](https://drive.google.com/file/d/17LIqK0gdGzUgEhZyIQOMYNO2C3uXj6Oz/view?usp=sharing) | [68 s · MP4](https://github.com/ADHU-ADHU/scenepilot-ros2/raw/refs/heads/main/docs/demos/visual-question-answering.mp4) |
+| Terminal: commands and replies | Smartphone question/answer and the phone-tracking confirmation | [Watch on Drive](https://drive.google.com/file/d/1EEfU19_h9T7A9u0hPMNp860B_fS1JWtJ/view?usp=sharing) | [68 s · MP4](https://github.com/ADHU-ADHU/scenepilot-ros2/raw/refs/heads/main/docs/demos/terminal-interaction.mp4) |
+| RViz2: target tracking | Person → phone → headphones → glasses, with masks and bounding boxes | [Watch on Drive](https://drive.google.com/file/d/1hTBy3ep91yk6JNRLcw2_SAukfDpb3UrY/view?usp=sharing) | [80 s · MP4](https://github.com/ADHU-ADHU/scenepilot-ros2/raw/refs/heads/main/docs/demos/tracking-highlights.mp4) |
 
-These are edited excerpts from the supplied screen recordings, played at their original timing. They demonstrate the workflow rather than measure accuracy or inference speed. [Media details and full-resolution poster](docs/demos/README.md).
+Drive opens the full recordings in a video player. The MP4 downloads are shorter edited excerpts; GitHub's repository file viewer may display a size warning instead of a player. Inline GIF previews work directly in this README. The recordings demonstrate the workflow rather than measure accuracy or inference speed. [Media details and previews](docs/demos/README.md).
+
+<details>
+<summary>Read the terminal interaction at a larger size</summary>
+
+[![Terminal questions, smartphone answer and phone-tracking confirmation](docs/assets/terminal-preview.gif)](https://drive.google.com/file/d/1EEfU19_h9T7A9u0hPMNp860B_fS1JWtJ/view?usp=sharing)
+
+</details>
 
 ## How it works
 
