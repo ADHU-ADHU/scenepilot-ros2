@@ -1,0 +1,17 @@
+# Standalone CPU validation; do not combine with compose.yaml (same port allocation).
+name: scenepilot_mock
+services:
+  smoke:
+    image: scenepilot-ros:jazzy-v1
+    build: {context: ., dockerfile: docker/Dockerfile.ros, target: runtime}
+    network_mode: host
+    init: true
+    environment:
+      ROS_DOMAIN_ID: '${ROS_DOMAIN_ID:-79}'
+      RMW_IMPLEMENTATION: rmw_cyclonedds_cpp
+      ROS_AUTOMATIC_DISCOVERY_RANGE: LOCALHOST
+      EVALUATION_DIR: /data/evaluation
+    volumes:
+      - ./config:/config:ro
+      - ./artifacts:/data
+    command: ['python3','/ws/scripts/ros_smoke.py','--config','/config/mock.yaml','--report','/data/ros-smoke-http.json']

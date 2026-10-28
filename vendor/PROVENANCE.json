@@ -1,0 +1,13 @@
+{
+  "upstream": "https://github.com/facebookresearch/sam3",
+  "commit": "660a5e9e1b8b4c02c0ad97229b88a09a6e4ff5b7",
+  "included": [
+    "sam3/",
+    "pyproject.toml",
+    "README.md",
+    "LICENSE"
+  ],
+  "archive_sha256": "5d2a38dc746e2c196606c740847bf9333c116103681f55eab69de130c0e54cd8",
+  "weights_included": false,
+  "host_environment_copied": false
+}

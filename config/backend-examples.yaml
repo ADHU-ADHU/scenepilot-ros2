@@ -1,0 +1,32 @@
+# Merge selected entries into platform.yaml's backends and start an adapter service.
+# These are examples, not enabled services. Exact Ollama tags verified 2026-10-22.
+qwen25:
+  kind: vlm
+  adapter: ollama
+  endpoint: http://127.0.0.1:18084
+  engine_url: http://127.0.0.1:11435
+  model: qwen2.5vl:3b
+  prompt_file: prompts/vlm.txt
+  resource_group: laptop_gpu
+  options: {temperature: 0.1, num_ctx: 4096, num_predict: 256}
+gemma:
+  kind: vlm
+  adapter: ollama
+  endpoint: http://127.0.0.1:18085
+  engine_url: http://127.0.0.1:11435
+  model: gemma3:4b
+  prompt_file: prompts/vlm.txt
+  resource_group: laptop_gpu
+  options: {temperature: 0.1, num_ctx: 4096, num_predict: 256}
+external:
+  kind: vlm
+  adapter: openai_compatible
+  endpoint: http://127.0.0.1:18086
+  engine_url: http://model-server:8000/v1
+  model: REPLACE_WITH_EXACT_SERVED_VISION_MODEL
+  prompt_file: prompts/vlm.txt
+  vision_verified: false
+  api_key_env: VLM_API_KEY
+  json_schema: true
+  options: {temperature: 0.1, max_tokens: 256}
+  # Use a separate GPU. For the serial laptop group, a working unload_url is mandatory.

@@ -1,0 +1,7 @@
+string camera
+string target
+bool stop
+---
+bool accepted
+uint64 generation
+string message

@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-25",
+  "project": "ScenePilot",
+  "unit_tests": {
+    "status": "passed",
+    "count": 18,
+    "command": "python3 -m pytest -q tests --junitxml=/tmp/scenepilot-validation/unit-tests.xml"
+  },
+  "clean_ros_build": {
+    "status": "passed",
+    "ros_distro": "jazzy",
+    "packages": [
+      "perception_core",
+      "perception_interfaces",
+      "scene_camera",
+      "scene_interfaces",
+      "scene_speech",
+      "scene_user",
+      "perception_ros"
+    ],
+    "duration_seconds": 12.9,
+    "command": "source /opt/ros/jazzy/setup.bash; colcon --log-base /tmp/scenepilot-validation/colcon-log build --base-paths src --build-base /tmp/scenepilot-validation/build --install-base /tmp/scenepilot-validation/install --executor sequential --cmake-args -DBUILD_TESTING=OFF"
+  },
+  "static_checks": {
+    "python_ast_files": 33,
+    "yaml_files": 6,
+    "package_xml_files": 7,
+    "shell_syntax_files": 3,
+    "status": "passed"
+  },
+  "source_logic": {
+    "runtime_python_files_checked": 19,
+    "differences_beyond_package_identifiers_and_banner": [],
+    "status": "passed"
+  },
+  "ros_smoke_inprocess": {
+    "ros_distro": "jazzy",
+    "learned_models": false,
+    "http_transport": false,
+    "checks": [
+      "front RGB -> VLM -> selection -> segmentation -> annotated output + depth + evaluator",
+      "in-flight VLM switch rejects stale result; new backend selects rear",
+      "segmentation backend switch + isolated comparison outputs",
+      "RGB-only segmentation continues with depth disabled",
+      "backend error is reported and following frames recover",
+      "atomic stop rejects in-flight segmentation and stops new masks"
+    ],
+    "status": "passed",
+    "tracking_results": 9,
+    "output_frames": 22,
+    "metrics": 18
+  },
+  "ros_smoke_http": {
+    "ros_distro": "jazzy",
+    "learned_models": false,
+    "http_transport": true,
+    "checks": [
+      "front RGB -> VLM -> selection -> segmentation -> annotated output + depth + evaluator",
+      "in-flight VLM switch rejects stale result; new backend selects rear",
+      "segmentation backend switch + isolated comparison outputs",
+      "RGB-only segmentation continues with depth disabled",
+      "backend error is reported and following frames recover",
+      "atomic stop rejects in-flight segmentation and stops new masks"
+    ],
+    "status": "passed",
+    "tracking_results": 9,
+    "output_frames": 22,
+    "metrics": 18
+  },
+  "runtime_environment": {
+    "ros_domain_id": 179,
+    "rmw_implementation": "rmw_cyclonedds_cpp",
+    "discovery": "LOCALHOST",
+    "http_mock_ports": [
+      28081,
+      28082,
+      28083,
+      28084
+    ]
+  },
+  "limits": [
+    "No Docker image builds or live Compose deployment tested.",
+    "No learned Qwen/SAM inference, CUDA/GPU runtime, physical cameras, microphones or GUI tested.",
+    "HTTP test intentionally injects one transient backend error and verifies recovery."
+  ],
+  "note": "Publication checks use synthetic CPU backends. Supplied recorded demos provide separate learned-model evidence.",
+  "compose_config": {
+    "main": "passed",
+    "mock": "passed"
+  }
+}

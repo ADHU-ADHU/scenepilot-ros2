@@ -1,0 +1,75 @@
+active: {vlm: qwen4, segmentation: sam3}
+inference_hz: 5.0
+vlm_max_width: 960
+jpeg_quality: 85
+history_messages: 8
+max_frame_age_s: 2.0
+max_selection_age_s: 120.0
+retry_backoff_s: 2.0
+evaluation_dir: /data/evaluation
+# Empty preserves the RGB optical frame. Set only when a valid TF tree exists.
+output_frame: ''
+topics:
+  query: /assistant/query
+  speech: /speech/transcript
+  reply: /assistant/reply
+  target: /sam/target
+  camera: /sam/camera
+  tracking: /tracking/image
+cameras:
+  front:
+    rgb: /camera/front/image_raw
+    depth: /camera/front/depth/aligned
+    camera_info: /camera/front/camera_info
+    depth_enabled: false
+    depth_registered: false
+    sync_slop_ms: 50
+    calibration_max_age_s: 30
+  rear:
+    rgb: /camera/rear/image_raw
+    depth: /camera/rear/depth/aligned
+    camera_info: /camera/rear/camera_info
+    depth_enabled: false
+    depth_registered: false
+    sync_slop_ms: 50
+    calibration_max_age_s: 30
+resource_groups:
+  laptop_gpu: {mode: serial}
+comparison:
+  vlm: []
+  segmentation: []
+backends:
+  qwen4:
+    kind: vlm
+    adapter: ollama
+    endpoint: http://127.0.0.1:18081
+    engine_url: http://127.0.0.1:11435
+    model: qwen3-vl:4b-instruct-q4_K_M
+    prompt_file: prompts/vlm.txt
+    options: {temperature: 0.1, num_ctx: 4096, num_predict: 256, seed: 42}
+    keep_alive: 5m
+    engine_timeout_s: 150
+    timeout_s: 180
+    resource_group: laptop_gpu
+  qwen2:
+    kind: vlm
+    adapter: ollama
+    endpoint: http://127.0.0.1:18082
+    engine_url: http://127.0.0.1:11435
+    model: qwen3-vl:2b-instruct-q4_K_M
+    prompt_file: prompts/vlm.txt
+    options: {temperature: 0.1, num_ctx: 4096, num_predict: 256, seed: 42}
+    keep_alive: 5m
+    engine_timeout_s: 150
+    timeout_s: 180
+    resource_group: laptop_gpu
+  sam3:
+    kind: segmentation
+    adapter: sam3
+    endpoint: http://127.0.0.1:18083
+    checkpoint: /models/sam3.pt
+    confidence_threshold: 0.5
+    resolution: 1008
+    precision: bfloat16
+    timeout_s: 180
+    resource_group: laptop_gpu

@@ -1,0 +1,6 @@
+string kind
+string backend
+---
+bool accepted
+uint64 generation
+string message

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package format="3">
+  <name>scene_camera</name>
+  <version>0.0.0</version>
+  <description>Configurable front and rear camera publishers for ScenePilot</description>
+  <maintainer email="130308572+ADHU-ADHU@users.noreply.github.com">Adhithya Palanisamy Chandrasekaran</maintainer>
+  <license>Proprietary</license>
+  <depend>rclpy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>cv_bridge</depend>
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+  <exec_depend>python3-opencv</exec_depend>
+  <buildtool_depend>ament_python</buildtool_depend>
+</package>

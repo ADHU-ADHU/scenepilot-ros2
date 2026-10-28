@@ -1,0 +1,16 @@
+build
+install
+log
+artifacts
+data
+models
+.git
+.env
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+outputs
+docs/assets
+docs/demos
+.venv
+venv

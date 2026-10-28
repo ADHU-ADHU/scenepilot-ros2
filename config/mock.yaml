@@ -1,0 +1,67 @@
+active:
+  vlm: mock_vlm
+  segmentation: mock_sam
+inference_hz: 5.0
+vlm_max_width: 960
+jpeg_quality: 85
+history_messages: 8
+max_frame_age_s: 2.0
+max_selection_age_s: 120.0
+retry_backoff_s: 2.0
+evaluation_dir: /data/evaluation
+output_frame: ''
+topics:
+  query: /assistant/query
+  speech: /speech/transcript
+  reply: /assistant/reply
+  target: /sam/target
+  camera: /sam/camera
+  tracking: /tracking/image
+cameras:
+  front:
+    rgb: /camera/front/image_raw
+    depth: /camera/front/depth/aligned
+    camera_info: /camera/front/camera_info
+    depth_enabled: true
+    depth_registered: true
+    sync_slop_ms: 50
+    calibration_max_age_s: 30
+  rear:
+    rgb: /camera/rear/image_raw
+    depth: /camera/rear/depth/aligned
+    camera_info: /camera/rear/camera_info
+    depth_enabled: true
+    depth_registered: true
+    sync_slop_ms: 50
+    calibration_max_age_s: 30
+resource_groups:
+  cpu:
+    mode: parallel
+comparison:
+  vlm:
+  - mock_vlm2
+  segmentation:
+  - mock_sam2
+backends:
+  mock_vlm:
+    kind: vlm
+    adapter: mock_vlm
+    endpoint: http://127.0.0.1:18081
+    resource_group: cpu
+  mock_vlm2:
+    kind: vlm
+    adapter: mock_vlm
+    endpoint: http://127.0.0.1:18082
+    resource_group: cpu
+    delay_s: 0.1
+  mock_sam:
+    kind: segmentation
+    adapter: mock_segmentation
+    endpoint: http://127.0.0.1:18083
+    resource_group: cpu
+  mock_sam2:
+    kind: segmentation
+    adapter: mock_segmentation
+    endpoint: http://127.0.0.1:18084
+    resource_group: cpu
+    delay_s: 0.1

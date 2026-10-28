@@ -1,0 +1,9 @@
+std_msgs/Header header
+string session_id
+string request_id
+uint64 generation
+string backend
+string action
+string camera
+string target
+string reply

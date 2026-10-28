@@ -1,0 +1,122 @@
+name: scenepilot
+x-ros: &ros
+  image: scenepilot-ros:jazzy-v1
+  build:
+    context: .
+    dockerfile: docker/Dockerfile.ros
+    target: runtime
+    args: {ROS_IMAGE: '${ROS_IMAGE:-ros:jazzy-ros-base-noble}'}
+  network_mode: host
+  init: true
+  restart: unless-stopped
+  environment: &ros-env
+    ROS_DOMAIN_ID: '${ROS_DOMAIN_ID:-42}'
+    RMW_IMPLEMENTATION: '${RMW_IMPLEMENTATION:-rmw_cyclonedds_cpp}'
+    ROS_AUTOMATIC_DISCOVERY_RANGE: '${ROS_AUTOMATIC_DISCOVERY_RANGE:-LOCALHOST}'
+    ROS_STATIC_PEERS: '${ROS_STATIC_PEERS:-}'
+    ROS_LOG_DIR: /tmp/ros-logs
+    EVALUATION_DIR: /data/evaluation
+  volumes:
+    - '${CONFIG_DIR:-./config}:/config:ro'
+    - '${DATA_DIR:-./data}:/data'
+x-api: &api
+  image: scenepilot-api:v1
+  build: {context: ., dockerfile: docker/Dockerfile.backend}
+  network_mode: host
+  init: true
+  restart: unless-stopped
+  volumes: ['${CONFIG_DIR:-./config}:/config:ro']
+x-gpu: &gpu
+  resources:
+    reservations:
+      devices:
+        - driver: nvidia
+          device_ids: ['${GPU_DEVICE_ID:-0}']
+          capabilities: [gpu]
+services:
+  system:
+    <<: *ros
+    command: ['ros2','launch','perception_ros','platform.launch.py','config:=/config/${PLATFORM_CONFIG:-platform.yaml}','use_sim_time:=${USE_SIM_TIME:-false}']
+  evaluator:
+    <<: *ros
+    command: ['ros2','run','perception_ros','evaluator','--ros-args','-p','config:=/config/${PLATFORM_CONFIG:-platform.yaml}','-p','use_sim_time:=${USE_SIM_TIME:-false}']
+  ollama:
+    image: '${OLLAMA_IMAGE:-ollama/ollama:0.40.9}'
+    network_mode: host
+    init: true
+    restart: unless-stopped
+    environment:
+      OLLAMA_HOST: 127.0.0.1:11435
+      OLLAMA_MAX_LOADED_MODELS: '1'
+      OLLAMA_NUM_PARALLEL: '1'
+      OLLAMA_CONTEXT_LENGTH: '4096'
+    volumes: [ollama-cache:/root/.ollama]
+    deploy: *gpu
+    healthcheck:
+      test: ['CMD','ollama','list']
+      interval: 15s
+      timeout: 5s
+      retries: 5
+  vlm4:
+    <<: *api
+    command: ['--config','/config/platform.yaml','--backend','qwen4','--port','18081']
+    healthcheck:
+      test: ['CMD','python','-c','import urllib.request; urllib.request.urlopen("http://127.0.0.1:18081/healthz",timeout=3)']
+      interval: 15s
+      timeout: 5s
+      retries: 3
+  vlm2:
+    <<: *api
+    command: ['--config','/config/platform.yaml','--backend','qwen2','--port','18082']
+    healthcheck:
+      test: ['CMD','python','-c','import urllib.request; urllib.request.urlopen("http://127.0.0.1:18082/healthz",timeout=3)']
+      interval: 15s
+      timeout: 5s
+      retries: 3
+  sam:
+    image: scenepilot-sam:v1
+    build: {context: ., dockerfile: docker/Dockerfile.sam}
+    network_mode: host
+    init: true
+    restart: unless-stopped
+    command: ['--config','/config/platform.yaml','--backend','sam3','--port','18083']
+    environment: {HF_HUB_OFFLINE: '1', NVIDIA_DRIVER_CAPABILITIES: "compute,utility"}
+    volumes:
+      - '${CONFIG_DIR:-./config}:/config:ro'
+      - type: bind
+        source: '${SAM_CHECKPOINT:-./models/sam3.pt}'
+        target: /models/sam3.pt
+        read_only: true
+        bind: {create_host_path: false}
+    deploy: *gpu
+    healthcheck:
+      test: ['CMD','python','-c','import urllib.request; urllib.request.urlopen("http://127.0.0.1:18083/healthz",timeout=3)']
+      interval: 15s
+      timeout: 5s
+      retries: 3
+  front_camera:
+    <<: *ros
+    profiles: [single-camera]
+    devices: ['${FRONT_DEVICE:-/dev/video0}:/dev/video0']
+    command: ['ros2','run','scene_camera','camera_node','--ros-args','-r','__node:=front_camera','-p','device:=/dev/video0','-p','topic:=${FRONT_TOPIC:-/camera/front/image_raw}','-p','frame_id:=front_optical_frame','-p','width:=640','-p','height:=480','-p','fps:=10.0']
+  cameras:
+    <<: *ros
+    profiles: [cameras]
+    devices: ['${FRONT_DEVICE:-/dev/video0}:/dev/video0','${REAR_DEVICE:-/dev/video2}:/dev/video2']
+    command: ['ros2','launch','perception_ros','cameras.launch.py','front_device:=/dev/video0','rear_device:=/dev/video2','front_topic:=${FRONT_TOPIC:-/camera/front/image_raw}','rear_topic:=${REAR_TOPIC:-/camera/rear/image_raw}']
+  speech:
+    <<: *ros
+    image: scenepilot-speech:v1
+    build: {context: ., dockerfile: docker/Dockerfile.ros, target: speech}
+    profiles: [speech]
+    devices: ['/dev/snd:/dev/snd']
+    stdin_open: true
+    tty: true
+    volumes:
+      - '${CONFIG_DIR:-./config}:/config:ro'
+      - whisper-cache:/root/.cache/huggingface
+      - '${MODEL_DIR:-./models}:/models:ro'
+    command: ['python','-m','scene_speech.stt_node','--ros-args','-p','model:=${WHISPER_MODEL:-small.en}']
+volumes:
+  ollama-cache:
+  whisper-cache:

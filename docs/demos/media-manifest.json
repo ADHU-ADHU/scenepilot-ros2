@@ -1,0 +1,196 @@
+{
+  "description": "Edited excerpts from user-supplied screen recordings; demonstrations are recorded evidence, not a new runtime validation.",
+  "originals_preserved": true,
+  "source_audio": "All three original AAC tracks measured effectively silent (mean/max\u221291dB); publication clips omit audio.",
+  "encoding_mp4": {
+    "video_codec": "H.264/libx264",
+    "crf": 26,
+    "pixel_format": "yuv420p",
+    "faststart": true,
+    "metadata_stripped": true
+  },
+  "verification": "Publication clips decoded fully and representative frames visually inspected. Crops focus on the demonstrated interaction and camera outputs.",
+  "sources": {
+    "video vector.mp4": {
+      "bytes": 509042258,
+      "sha256": "247a6611ee9b6e43349039ff495fe466ac226b92effd4b2c93dfaf7c3a3aa7c2"
+    },
+    "video combined.mp4": {
+      "bytes": 407172395,
+      "sha256": "5996b2b1cf30e438d28f92ec741c6cb543a9d37d72714055cad261fad2b65180"
+    },
+    "terminal.mp4": {
+      "bytes": 34771261,
+      "sha256": "051451c88067deb7845c951c7bcf11e5a8961dfed4c0cc5179be0d0b9783602b"
+    }
+  },
+  "assets": {
+    "tracking-highlights.mp4": {
+      "bytes": 3356594,
+      "sha256": "51cebd988f90559c8a30e7427e2ca9ea317342be6c466c7e574992bf9a221628",
+      "duration_seconds": 80.0,
+      "streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 960,
+          "avg_frame_rate": "15/1"
+        }
+      ],
+      "source": "video vector.mp4",
+      "source_windows_seconds": [
+        [
+          95,
+          115
+        ],
+        [
+          125,
+          145
+        ],
+        [
+          220,
+          240
+        ],
+        [
+          255,
+          275
+        ]
+      ],
+      "edit": "Four chronological 20-second excerpts joined with hard cuts; original camera-only framing retained; resized to 1280 pixels wide, 15 fps; audio removed.",
+      "visible_behaviors": [
+        "Person mask and bounding boxes while holding a smartphone.",
+        "Phone mask and bounding box following changes in position and orientation.",
+        "Headphone mask and bounding box.",
+        "Glasses mask and bounding box."
+      ],
+      "view": "RViz2-only"
+    },
+    "visual-question-answering.mp4": {
+      "bytes": 1964422,
+      "sha256": "6001d8e02386a302e572f656436628dede5cc2757768d37d9b45b6286bc6bf0f",
+      "duration_seconds": 68.0,
+      "streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "h264",
+          "width": 1920,
+          "height": 598,
+          "avg_frame_rate": "15/1"
+        }
+      ],
+      "source": "video combined.mp4",
+      "source_windows_seconds": [
+        [
+          80,
+          148
+        ]
+      ],
+      "crop_source_pixels": {
+        "x": 0,
+        "y": 450,
+        "width": 3840,
+        "height": 1194
+      },
+      "black_mask_after_crop_pixels": {
+        "x": 0,
+        "y": 350,
+        "width": 1494,
+        "height": 844
+      },
+      "edit": "Cropped top 450 pixels to remove terminal title and local prompts/paths. Black mask over unused lower-left terminal area hides the beginning of the next unfinished prompt. Resized to 1920 pixels wide, 15 fps; audio removed.",
+      "visible_behaviors": [
+        "Typed question about what is held and assistant answer identifying a black smartphone.",
+        "Person segmentation visible beside the terminal.",
+        "Typed request to track the phone and phone segmentation visible beside the terminal."
+      ],
+      "view": "merged terminal and RViz2"
+    },
+    "tracking-preview.gif": {
+      "bytes": 1617616,
+      "sha256": "72aef5dc83755c4df913a693395d493096f58eef5368f98faa3166e49cc9e9c7",
+      "duration_seconds": 12.01,
+      "streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "gif",
+          "width": 480,
+          "height": 360,
+          "avg_frame_rate": "25/3"
+        }
+      ],
+      "source": "tracking-highlights.mp4",
+      "source_windows_seconds": [
+        [
+          2,
+          5
+        ],
+        [
+          27,
+          30
+        ],
+        [
+          47,
+          50
+        ],
+        [
+          67,
+          70
+        ]
+      ],
+      "description": "Twelve-second looping visual preview of the four tracked target categories; 480 pixels wide, 8 fps, 96-color palette."
+    },
+    "tracking-poster.png": {
+      "bytes": 757017,
+      "sha256": "d8a0f71d80ffdf4423a35f480260aa55b2ab355c75ea5974538a4caa338dad3d",
+      "duration_seconds": 0.0,
+      "streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "png",
+          "width": 1280,
+          "height": 960,
+          "avg_frame_rate": "25/1"
+        }
+      ],
+      "source": "tracking-highlights.mp4",
+      "frame_time_seconds": 35,
+      "description": "Phone tracking with a green segmentation mask and bounding box."
+    },
+    "terminal-interaction.mp4": {
+      "bytes": 119586,
+      "sha256": "71960734425bd5fa138281065b0701f164c0cb95801568824e958df5c0810365",
+      "duration_seconds": 68.0,
+      "streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "h264",
+          "width": 1600,
+          "height": 400,
+          "avg_frame_rate": "15/1"
+        }
+      ],
+      "source": "terminal.mp4",
+      "source_windows_seconds": [
+        [
+          80,
+          148
+        ]
+      ],
+      "view": "terminal-only",
+      "crop_source_pixels": {
+        "x": 0,
+        "y": 850,
+        "width": 1920,
+        "height": 480
+      },
+      "edit": "Tight crop preserves the person-tracking request, smartphone question and answer, and phone-tracking request. The original application title, startup commands, local paths, and next unfinished question are outside the crop. Resized to 1600 pixels wide at 15 fps; audio removed.",
+      "visible_behaviors": [
+        "Typed request to track the person in front and assistant confirmation.",
+        "Typed question about what is held and assistant answer identifying a black smartphone.",
+        "Typed request to track the phone and assistant confirmation."
+      ]
+    }
+  },
+  "recording_environment": "ROS 2 Jazzy container setup, confirmed by the author."
+}
