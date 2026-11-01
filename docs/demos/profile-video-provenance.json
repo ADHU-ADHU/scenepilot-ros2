@@ -1,0 +1,107 @@
+{
+  "description": "Media audit and prepared silent profile videos. Repository files and original recordings remain unchanged.",
+  "files": [
+    {
+      "file": "scenepilot-profile-demo.mp4",
+      "sha256": "0cbf753be0de3415513d668ab42685a5047ca4a5605cca1411ec70862406eebb",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 720,
+            "height": 668,
+            "pix_fmt": "yuv420p",
+            "avg_frame_rate": "15/1"
+          }
+        ],
+        "format": {
+          "duration": "48.000000",
+          "size": "953533"
+        }
+      },
+      "audio_stream_count": 0,
+      "full_decode": "passed",
+      "normal_speed": true,
+      "synthetic_visuals_added": false,
+      "title": "ScenePilot: language interaction and target tracking",
+      "edit": "One contiguous 48-second interval; readable terminal crop stacked above corresponding camera result. No temporal cuts, speed changes, frame holds or synthetic imagery.",
+      "timing": {
+        "public_clip_window_seconds": [
+          20,
+          68
+        ],
+        "original_recording_window_seconds": [
+          100,
+          148
+        ],
+        "speed_factor": 1.0,
+        "source_alignment": "Both public clips document the same original time window 80-148 seconds. The derived view uses matching offsets in both."
+      },
+      "sources": [
+        {
+          "role": "terminal/top",
+          "documented_public_url": "https://raw.githubusercontent.com/ADHU-ADHU/scenepilot-ros2/main/docs/demos/terminal-interaction.mp4",
+          "sha256": "71960734425bd5fa138281065b0701f164c0cb95801568824e958df5c0810365",
+          "source_dimensions": [
+            1600,
+            400
+          ],
+          "crop_pixels": {
+            "x": 0,
+            "y": 0,
+            "width": 960,
+            "height": 400
+          },
+          "output_dimensions": [
+            720,
+            300
+          ],
+          "original_source": "terminal.mp4",
+          "original_source_sha256": "051451c88067deb7845c951c7bcf11e5a8961dfed4c0cc5179be0d0b9783602b"
+        },
+        {
+          "role": "camera/bottom",
+          "documented_public_url": "https://raw.githubusercontent.com/ADHU-ADHU/scenepilot-ros2/main/docs/demos/visual-question-answering.mp4",
+          "sha256": "6001d8e02386a302e572f656436628dede5cc2757768d37d9b45b6286bc6bf0f",
+          "source_dimensions": [
+            1920,
+            598
+          ],
+          "crop_pixels": {
+            "x": 748,
+            "y": 0,
+            "width": 1172,
+            "height": 598
+          },
+          "output_dimensions": [
+            720,
+            368
+          ],
+          "original_source": "video combined.mp4",
+          "original_source_sha256": "5996b2b1cf30e438d28f92ec741c6cb543a9d37d72714055cad261fad2b65180"
+        }
+      ],
+      "encoding": "H.264/libx264, CRF23, medium, yuv420p, 15fps, faststart, metadata stripped, audio omitted",
+      "visible_behaviors": [
+        "Smartphone question and answer displayed in terminal.",
+        "Typed phone-tracking request and confirmation.",
+        "Actual person-mask view changes to a phone-only mask that follows device orientation."
+      ],
+      "visual_inspection": "Inspected synchronized frames across beginning, typed request and final phone-only mask; final frame at45seconds clearly shows green smartphone mask and bounding box."
+    }
+  ],
+  "provenance_documents_read": [
+    "roverlink-ros2/docs/demos/README.md",
+    "roverlink-ros2/docs/demos/composite-media-manifest.json",
+    "roverlink-ros2/docs/demos/prepared-media-manifest.json",
+    "scenepilot-ros2/docs/demos/README.md",
+    "scenepilot-ros2/docs/demos/media-manifest.json",
+    "scenepilot-ros2/docs/demos/preview-manifest.json"
+  ],
+  "published_attachments": {
+    "scenepilot-profile-demo.mp4": "https://github.com/user-attachments/assets/513159de-e3a8-439b-97b9-53676761720d"
+  }
+}

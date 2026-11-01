@@ -2,6 +2,12 @@
 
 ScenePilot is an active perception project. The author demonstrated the Jazzy container workflow using a real camera, natural-language requests, VLM responses, and SAM segmentation in RViz2. Three synchronized screen-recording views were supplied: terminal, RViz2 and combined. Edited excerpts are included in [demos](demos/README.md).
 
+## Project update — 2 November 2026
+
+ScenePilot now provides the perception foundation for an ongoing master's thesis on network- and latency-aware robot perception. The work investigates communication/AI trade-offs, including SCReAM/L4S transport, with a Husky planned for physical robot experiments. This is ongoing research; the existing recordings demonstrate the earlier perception prototype.
+
+The thesis extension is not fully disclosed in this repository. Its methods, integration details and unpublished results remain outside this public release. [Read the public project update](PROJECT_UPDATE.md).
+
 ## Capability status
 
 | Area | Current state |

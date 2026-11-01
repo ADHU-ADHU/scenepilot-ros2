@@ -6,11 +6,11 @@ ScenePilot connects natural-language commands to camera-based perception. Ask a 
 
 A vision-language model interprets the request and selects a target and camera. A separate SAM 3 backend segments that target across incoming frames. ROS coordination, model serving and evaluation run as separate container services.
 
-**Status:** working VLM and segmentation demos; the wider platform is under active development.
+**Status:** working public VLM and segmentation prototype; now forming the perception foundation for an **ongoing master's thesis on network- and latency-aware robot perception**, with a **Husky** planned for robot experiments. [Project update](docs/PROJECT_UPDATE.md).
 
-[![Actual terminal query and reply above the synchronized RViz2 segmentation result](docs/assets/query-and-result-preview.gif)](https://drive.google.com/file/d/17LIqK0gdGzUgEhZyIQOMYNO2C3uXj6Oz/view?usp=sharing)
+https://github.com/user-attachments/assets/513159de-e3a8-439b-97b9-53676761720d
 
-*Recorded on the Jazzy container setup. The terminal asks what is in the person's hand, receives the smartphone answer, and requests phone tracking. The synchronized RViz2 view shows the mask changing to the phone. Click the preview to watch the combined recording on Drive.*
+*Silent, 48-second demo from the ROS 2 Jazzy container setup: a natural-language phone-tracking request and confirmation above the synchronized RViz2 segmentation output. The recording shows the public perception prototype.*
 
 **Watch in your browser:** [Combined demo](https://drive.google.com/file/d/17LIqK0gdGzUgEhZyIQOMYNO2C3uXj6Oz/view?usp=sharing) · [Terminal commands and replies](https://drive.google.com/file/d/1EEfU19_h9T7A9u0hPMNp860B_fS1JWtJ/view?usp=sharing) · [RViz2 tracking](https://drive.google.com/file/d/1hTBy3ep91yk6JNRLcw2_SAukfDpb3UrY/view?usp=sharing)
 
@@ -24,7 +24,7 @@ A vision-language model interprets the request and selects a target and camera. 
 | Terminal: commands and replies | Smartphone question/answer and the phone-tracking confirmation | [Watch on Drive](https://drive.google.com/file/d/1EEfU19_h9T7A9u0hPMNp860B_fS1JWtJ/view?usp=sharing) | [68 s · MP4](https://github.com/ADHU-ADHU/scenepilot-ros2/raw/refs/heads/main/docs/demos/terminal-interaction.mp4) |
 | RViz2: target tracking | Person → phone → headphones → glasses, with masks and bounding boxes | [Watch on Drive](https://drive.google.com/file/d/1hTBy3ep91yk6JNRLcw2_SAukfDpb3UrY/view?usp=sharing) | [80 s · MP4](https://github.com/ADHU-ADHU/scenepilot-ros2/raw/refs/heads/main/docs/demos/tracking-highlights.mp4) |
 
-Drive opens the full recordings in a video player. The MP4 downloads are shorter edited excerpts; GitHub's repository file viewer may display a size warning instead of a player. Inline GIF previews work directly in this README. The recordings demonstrate the workflow rather than measure accuracy or inference speed. [Media details and previews](docs/demos/README.md).
+The lead demo plays directly in GitHub as a silent video. Drive provides the full recordings, and the MP4 downloads above are shorter edited excerpts; GitHub's repository file viewer may show a size warning for those raw files. Additional GIF previews are available below. The recordings demonstrate the workflow rather than measure accuracy or inference speed. [Media details and previews](docs/demos/README.md).
 
 <details>
 <summary>Read the terminal interaction at a larger size</summary>
@@ -32,6 +32,12 @@ Drive opens the full recordings in a video player. The MP4 downloads are shorter
 [![Terminal questions, smartphone answer and phone-tracking confirmation](docs/assets/terminal-preview.gif)](https://drive.google.com/file/d/1EEfU19_h9T7A9u0hPMNp860B_fS1JWtJ/view?usp=sharing)
 
 </details>
+
+## From prototype to ongoing thesis
+
+ScenePilot's language-guided perception workflow is the starting point for my current master's thesis. The research investigates how communication settings and AI processing choices affect end-to-end latency and perception performance as network conditions vary. The communication work involves **SCReAM and L4S**, with **Husky** robot experiments planned.
+
+This repository documents the earlier public perception prototype. The thesis extension remains under development, and its specific methods and unpublished results are not released here. The open-source transport reference is [Ericsson Research's SCReAM](https://github.com/EricssonResearch/scream). See the [project update](docs/PROJECT_UPDATE.md) for the public overview and current scope.
 
 ## How it works
 

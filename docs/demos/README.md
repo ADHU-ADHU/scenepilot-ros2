@@ -2,7 +2,9 @@
 
 The author confirmed that these recordings were captured using the ROS 2 Jazzy container setup. The publication clips retain the original playback timing and show the existing VLM/segmentation workflow. They are illustrative examples, not a controlled accuracy or latency benchmark.
 
-[![Typed terminal queries and synchronized RViz2 output](../assets/query-and-result-preview.gif)](https://drive.google.com/file/d/17LIqK0gdGzUgEhZyIQOMYNO2C3uXj6Oz/view?usp=sharing)
+https://github.com/user-attachments/assets/513159de-e3a8-439b-97b9-53676761720d
+
+*Silent 48-second excerpt: the terminal request and confirmation above the corresponding RViz2 target segmentation. This native player also appears on the author's GitHub profile. [Source, timing and audio verification](profile-video-provenance.json).*
 
 ## Watch the full recordings
 
