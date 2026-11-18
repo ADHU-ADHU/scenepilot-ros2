@@ -6,7 +6,7 @@ ScenePilot connects natural-language commands to camera-based perception. Ask a 
 
 A vision-language model interprets the request and selects a target and camera. A separate SAM 3 backend segments that target across incoming frames. ROS coordination, model serving and evaluation run as separate container services.
 
-**Status:** working public VLM and segmentation prototype; now forming the perception foundation for an **ongoing master's thesis on network- and latency-aware robot perception**, with a **Husky** planned for robot experiments. [Project update (masters thesis - Umea University) ](docs/PROJECT_UPDATE.md).
+**Status:** working public VLM and segmentation prototype; now forming the perception foundation for an **ongoing master's thesis on network- and latency-aware robot perception**, with a **Husky** planned for robot experiments. [Project update (Masters thesis conducted at Ericsson Research - Umea University) ](docs/PROJECT_UPDATE.md).
 
 https://github.com/user-attachments/assets/513159de-e3a8-439b-97b9-53676761720d
 
